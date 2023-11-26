@@ -1,16 +1,18 @@
 package com.application.travelingsalesmanproblem;
 
-import com.application.travelingsalesmanproblem.model.Path;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class TaskServiceTest {
 
-    private final TaskService service = new TaskService();
+    TaskRepository taskRepository = new TaskRepository();
+    TaskService taskService = new TaskService(taskRepository);
+
+
 
 
     private final double[][] startMatrix = {
@@ -43,15 +45,25 @@ class TaskServiceTest {
     };
 
 
+    @Test
+    void simplify() {
+        double Eps = 0;
+        List<Path> paths = new ArrayList<>();
+        Iteration iteration = new Iteration(startMatrix,Eps,paths);
+        taskService.simplify(iteration);
 
 
-//    @Test
-//    void simplify() {
-//        double Eps = 79;
-//        double[][] changedMatrix =service.simplify(startMatrix);
-//        assertArrayEquals(expectedMatrix,changedMatrix);
-//
-//    }
+        assertArrayEquals(expectedMatrix, iteration.matrix);
+        assertEquals(79,iteration.E);
+
+
+    }
+
+    @Test
+    void test(){
+
+
+    }
 
 //    @Test
 //    void findZeros() {
@@ -77,14 +89,6 @@ class TaskServiceTest {
 //
 //    }
 
-    @Test
-    void addPath() {
-        assertArrayEquals(expectedAddMatrix,service.addPath(startMatrix,0,0));
-    }
 
-    @Test
-    void excludePath() {
-        assertArrayEquals(expectedExcludeMatrix,service.excludePath(startMatrix,0,1));
 
-    }
 }
