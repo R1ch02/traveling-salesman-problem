@@ -8,7 +8,6 @@ public class Path {
     double value;
     double from;
     double to;
-    boolean addOrEx;
 
     public Path(double value,double from, double to){
         setValue(value);
@@ -16,8 +15,8 @@ public class Path {
         setTo(to);
     }
 
-    public Path(boolean addOrEx, double from, double to){
-        setAddOrEx(addOrEx);
+
+    public Path(double from, double to){
         setFrom(from);
         setTo(to);
     }

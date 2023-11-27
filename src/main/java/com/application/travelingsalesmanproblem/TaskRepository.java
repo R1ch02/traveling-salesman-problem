@@ -5,9 +5,11 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class TaskRepository {
 
-   static Node root;
+    Node root;
+    static double Eps = Double.MAX_VALUE;
 
-   public TaskRepository(){
+
+    public TaskRepository(){
        this.root = null;
    }
 
@@ -23,6 +25,10 @@ public class TaskRepository {
        } else if(root.rightNode == null){
            root.rightNode = addNode(root.rightNode,iteration);
        }
+
+       root.leftNode = addNode(root.leftNode,iteration);
+       root.rightNode = addNode(root.rightNode,iteration);
+
        return root;
    }
 
@@ -33,6 +39,12 @@ public class TaskRepository {
             printTree(root.rightNode);
         }
     }
+
+//    public Node checkForTheLeastE(Node root) {
+//        if(root != null){
+//
+//        }
+//    }
 
     
 }
